@@ -1,0 +1,440 @@
+// Elements
+const sideMenu = document.querySelector('#sideMenu');
+const navBar = document.querySelector("nav");
+const navLinks = document.querySelector("nav ul");
+
+// ------- MOBILE MENU -------
+function openMenu() {
+  sideMenu.classList.add("open");
+}
+
+function closeMenu() {
+  sideMenu.classList.remove("open");
+}
+
+// ------- NAVBAR SCROLL EFFECT -------
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    navBar.classList.add(
+      'bg-white', 'bg-opacity-50', 'backdrop-blur-lg',
+      'shadow-sm', 'dark:bg-darkTheme', 'dark:shadow-white/20'
+    );
+
+    navLinks.classList.remove(
+      'bg-white', 'shadow-sm', 'bg-opacity-50',
+      'dark:border', 'dark:border-white/50', "dark:bg-transparent"
+    );
+  } else {
+    navBar.classList.remove(
+      'bg-opacity-50', 'backdrop-blur-lg', 'shadow-sm'
+    );
+
+    navLinks.classList.add(
+      'bg-white', 'shadow-sm', 'bg-opacity-50',
+      'dark:border', 'dark:border-white/50', "dark:bg-transparent"
+    );
+  }
+});
+
+// ------- DARK MODE -------
+if (
+  localStorage.theme === "dark" ||
+  (!("theme" in localStorage) &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches)
+) {
+  document.documentElement.classList.add("dark");
+} else {
+  document.documentElement.classList.remove("dark");
+}
+
+function toggleTheme() {
+  document.documentElement.classList.toggle("dark");
+
+  if (document.documentElement.classList.contains("dark")) {
+    localStorage.theme = "dark";
+  } else {
+    localStorage.theme = "light";
+  }
+}
+
+
+
+
+
+
+
+
+
+
+// <!DOCTYPE html>
+// <html lang="en" class="scroll-smooth">
+
+// <head>
+//     <meta charset="UTF-8">
+//     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//     <title>Portfolio</title>
+//     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+//     <script src="./tailwind_config.js"></script>
+//     <link rel="preconnect" href="https://fonts.googleapis.com">
+// <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+// <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+// </head>
+
+// <body class="overflow-x-hidden font-outfit leading-8">
+
+//     <!-- Background -->
+//     <div class="fixed top-0 right-0 w-11/12 -z-10" style="transform: translateY(-80%);">
+//         <img src="./images/header-bg-color.png" alt="" class="w-full">
+//     </div>
+
+//     <!-- NAVBAR -->
+//     <nav class="flex items-center justify-between px-8 py-4 bg-white shadow-sm sticky top-0">
+
+//         <!-- Logo -->
+//         <img src="./images/logo.png" alt="Logo" class="w-28 cursor-pointer">
+
+//         <!-- Desktop Menu -->
+//         <ul class="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-whitw shadow-sm bg-opacity-50 font-ovo">
+//             <li><a href="#top" class="hover:text-blue-500">Home</a></li>
+//             <li><a href="#about" class="hover:text-blue-500">About me</a></li>
+//             <li><a href="#services" class="hover:text-blue-500">Services</a></li>
+//             <li><a href="#work" class="hover:text-blue-500">My Work</a></li>
+//             <li><a href="#contact" class="hover:text-blue-500">Contact me</a></li>
+//         </ul>
+
+//         <!-- Right Buttons -->
+//         <div class="flex items-center gap-4">
+//             <button><img src="./images/moon_icon.png" alt="" class="w-6"></button>
+
+//             <a href="#contact"
+//                 class="hidden lg:flex items-center gap-3 px-10 py-2.5 border border-gray-500 rounded-full ml-4 font-ovo">
+//                 Contact <img src="./images/arrow-icon.png" alt="arrow" class="w-4">
+//             </a>
+
+//             <button class="block md:hidden ml-3" onclick="openMenu()">
+//                 <img src="./images/menu-black.png" alt="" class="w-6">
+//             </button>
+//         </div>
+
+//         <!-- Mobile Side Menu -->
+//         <ul id="sideMenu"
+//             class="flex md:hidden flex-col gap-4 py-20 px-10 fixed right-64 top-0 button-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 font-ovo">
+
+//             <div class="absolute right-6 top-6" onclick="closeMenu()">
+//                 <img src="./images/close-black.png" alt="" class="w-5 cursor-pointer">
+//             </button>
+
+//                 <li><a href="#top" onclick="closeMenu()">Home</a></li>
+//                 <li><a href="#about" onclick="closeMenu()">About me</a></li>
+//                 <li><a href="#services" onclick="closeMenu()">Services</a></li>
+//                 <li><a href="#work" onclick="closeMenu()">My Work</a></li>
+//                 <li><a href="#contact" onclick="closeMenu()">Contact me</a></li>
+//             </ul>
+//         </div>
+//     </nav>
+
+//     <!-- HERO SECTION -->
+//     <div class="w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4">
+
+//         <img src="./images/profile-img.jpg" alt="" class="rounded-full w-32">
+
+//         <h3 class="flex items-end gap-2 text-xl md:text-2xl mb-3 font-ovo">
+//             Hi! I'm Praveen Payalopalli
+//             <img src="./images/hand-icon.png" alt="" class="w-6">
+//         </h3>
+
+//         <h1 class="text-3xl sm:text-6xl lg:text-[66px] font-ovo">
+//             Full Stack Web Developer
+//         </h1>
+
+//         <p class="max-w-2xl mx-auto font-ovo">
+//             I am a Full Stack Web Developer. I built a complete Food Delivery Website with React, Node.js, Express, and
+//             MongoDB.
+//         </p>
+
+//         <div class="flex flex-col sm:flex-row items-center gap-4 mt-4">
+//             <a href="#contact"
+//                 class="px-10 py-3 rounded-full bg-gradient-to-r from-[#b820e6] to-[#da7d20] text-white flex items-center gap-2">
+//                 Contact Me <img src="./images/right-arrow-white.png" alt="" class="w-4">
+//             </a>
+
+//             <a href="./images/logo.png" download
+//                 class="px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 bg-white">
+//                 My Resume <img src="./images/right-arrow-white.png" alt="" class="w-4">
+//             </a>
+//         </div>
+//     </div>
+
+//     <!-- ABOUT SECTION -->
+//     <div id="about" class="w-full px-[12%] py-10 scroll-mt-20">
+//         <h4 class="text-center mb-2 text-lg font-ovo">Introduction</h4>
+//         <h2 class="text-center text-5xl font-ovo">About Me</h2>
+
+//         <div class="flex w-full flex-col lg:flex-row items-center gap-20 my-20">
+
+//             <div class="max-w-max mx-auto relative">
+//                 <img src="./images/user-image.jpg" alt="" class="w-64 sm:w-60 rounded-3xl max-w-none">
+//             </div>
+//             <div class="bg-white w-1/2 aspect-square absolute right-0 buttom-0 rounded-full translate-x-1/4 
+//                 translate-y-1/3 shadow-[0_4px_55px_rgba(149,0,162,0.15)] flex items-center justify-center">
+//                 <img src="./images/circular-text.png" alt="" class="w-full">
+//                 <img src="./images/dev-icon.png" alt="" class="w-1/4 absolute top-1/
+//                 2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+//             </div>
+
+//             <div class="flex-1">
+//                 <p class="mb-10 max-w-2xl font-ovo">
+//                     Enthusiastic and dedicated Software Engineer with hands-on experience in Full Stack Web Development
+//                     using React.js, Node.js, Express.js, and MongoDB. Strong at building scalable, secure, and
+//                     user-focused
+//                     applications with clean architecture and optimized performance.
+//                 </p>
+
+//                 <!-- 3 Info Cards -->
+//                 <ul class="grid grid-cols-1 sm:grid-cols-auto gap-6 max-w-2xl">
+
+//                     <!-- Card 1 -->
+//                     <li class="border-[0.5px] border-gray-400 rounded-xl p-6 cursor-pointer hover:bg-[#fcf4ff]
+//                         hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000]">
+//                         <img src="./images/code-icon.png" class="w-7 mt-3">
+//                         <h3 class="my-4 font-semibold text-gray-700">Languages</h3>
+//                         <p class="text-gray-600 text-sm">HTML, CSS, JavaScript, React, Node.js</p>
+//                     </li>
+
+//                     <!-- Card 2 -->
+//                     <li class="border-[0.5px] border-gray-400 rounded-xl p-6 cursor-pointer hover:bg-[#fcf4ff]
+//                         hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000]">
+//                         <img src="./images/edu-icon.png" class="w-7 mt-3">
+//                         <h3 class="my-4 font-semibold text-gray-700">Education</h3>
+//                         <p class="text-gray-600 text-sm">B.Tech in ECE, Diploma in ECE</p>
+//                     </li>
+
+//                     <!-- Card 3 -->
+//                     <li class="border-[0.5px] border-gray-400 rounded-xl p-6 cursor-pointer hover:bg-[#fcf4ff]
+//                         hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000]">
+//                         <img src="./images/project-icon.png" class="w-7 mt-3">
+//                         <h3 class="my-4 font-semibold text-gray-700">Projects</h3>
+//                         <p class="text-gray-600 text-sm">Food Delivery App, Smart Door System</p>
+//                     </li>
+//                 </ul>
+//                 <h4 class="my-6 text-gray-700">Tools i use</h4>
+//                 <ul class="flex items-center gap-3 sm:gap-5">
+//                     <li
+//                         class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-1g cursor-pointer hover:-translate-y-1 duration-500">
+//                         <img src="./images/vscode.png" alt="" class="w-5 sm:w-7">
+//                     </li>
+//                     <li
+//                         class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-1g cursor-pointer hover:-translate-y-1 duration-500">
+//                         <img src="./images/firebase.png" alt="" class="w-5 sm:w-7">
+//                     </li>
+//                     <li
+//                         class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-1g cursor-pointer hover:-translate-y-1 duration-500">
+//                         <img src="./images/mongodb.png" alt="" class="w-5 sm:w-7">
+//                     </li>
+//                     <li
+//                         class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-1g cursor-pointer hover:-translate-y-1 duration-500">
+//                         <img src="./images/figma.png" alt="" class="w-5 sm:w-7">
+//                     </li>
+//                     <li
+//                         class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-1g cursor-pointer hover:-translate-y-1 duration-500">
+//                         <img src="./images/git.png" alt="" class="w-5 sm:w-7">
+//                     </li>
+//                 </ul>
+//             </div>
+//         </div>
+//     </div>
+
+//     <!-- ----- services ----- -->
+
+//     <div id="services" class="w-full px-[12%] py-10 scroll-mt-20">
+//         <h4 class="text-center mb-2 text-lg font-ovo">What i offer</h4>
+//         <h2 class="text-center text-5xl font-ovo">My services</h2>
+//         <p class="text-center max-w-2x1 mx-auto mt-5 mb-12 font-ovo"> Enthusiastic and dedicated Software Engineer with hands-on
+//             experience in Full Stack Web Development
+//             using React.js, Node.js, Express.js, and MongoDB. Strong at building scalable, secure, and user-focused
+//             applications with clean architecture and optimized performance.</p>
+//         <div class="grid grid-cols-4 gap-6 my-10">
+//             <div class="border border-gray-400 rounded-lg px-8 py-12 
+//             hover:shadow-[4px_4px_0_#000] cursor-pointer hover:bg-[#fcf4ff]
+//              hover:-translate-y-1 duration-500">
+//                 <img src="./images/web-icon.png" alt="w-10">
+//                 <h3 class="text-lg my-4 text-gray-700 font-ovo">web design</h3>
+//                 <p class="text-sm text-gray-600 leading-5 font-ovo">Web development is the process of building, programming...
+//                 </p>
+//                 <a href="" class="flex items-center gap-2 text-sm mt-5">Read pmore <img src="./images/right-arrow.png"
+//                         alt="" class="w-4"> </a>
+//             </div>
+
+//             <div class="border border-gray-400 rounded-lg px-8 py-12 
+//             hover:shadow-[4px_4px_0_#000] cursor-pointer hover:bg-[#fcf4ff]
+//              hover:-translate-y-1 duration-500">
+//                 <img src="./images/mobile-icon.png" alt="w-10">
+//                 <h3 class="text-lg my-4 text-gray-700 font-ovo">Mobile App</h3>
+//                 <p class="text-sm text-gray-600 leading-5 font-ovo">Web development is the process of building, programming...
+//                 </p>
+//                 <a href="" class="flex items-center gap-2 text-sm mt-5">Read pmore <img src="./images/right-arrow.png"
+//                         alt="" class="w-4"> </a>
+//             </div>
+
+//             <div class="border border-gray-400 rounded-lg px-8 py-12 
+//             hover:shadow-[4px_4px_0_#000] cursor-pointer hover:bg-[#fcf4ff]
+//              hover:-translate-y-1 duration-500">
+//                 <img src="./images/ui-icon.png" alt="w-10">
+//                 <h3 class="text-lg my-4 text-gray-700">UI/ UX Design</h3>
+//                 <p class="text-sm text-gray-600 leading-5">Web development is the process of building, programming...
+//                 </p>
+//                 <a href="" class="flex items-center gap-2 text-sm mt-5">Read pmore <img src="./images/right-arrow.png"
+//                         alt="" class="w-4"> </a>
+//             </div>
+
+//             <div class="border border-gray-400 rounded-lg px-8 py-12 
+//             hover:shadow-[4px_4px_0_#000] cursor-pointer hover:bg-[#fcf4ff]
+//              hover:-translate-y-1 duration-500">
+//                 <img src="./images/graphics-icon.png" alt="w-10">
+//                 <h3 class="text-lg my-4 text-gray-700">Graphics Design</h3>
+//                 <p class="text-sm text-gray-600 leading-5">Web development is the process of building, programming...
+//                 </p>
+//                 <a href="" class="flex items-center gap-2 text-sm mt-5">Read pmore <img src="./images/right-arrow.png"
+//                         alt="" class="w-4"> </a>
+//             </div>
+//         </div>
+//     </div>
+//     <!-- -------- my work ------------ -->
+
+//     <div id="Work" class="w-full px-[12%] py-10 scroll-mt-20">
+//         <h4 class="text-center mb-2 text-lg">My portfolio</h4>
+//         <h2 class="text-center text-5xl font-bold">My Letest work</h2>
+//         <p class="text-center max-w-2x1 mx-auto mt-5 mb-12"> Enthusiastic and dedicated Software Engineer with hands-on
+//             experience in Full Stack Web Development
+//             using React.js, Node.js, Express.js, and MongoDB. Strong at building scalable, secure, and user-focused
+//             applications with clean architecture and optimized performance.</p>
+//     </div>
+//     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 my-10 gap-5">
+
+//         <!-- Work Card 1 -->
+//         <div class="relative group aspect-square bg-[url('./images/work-1.png')] 
+//         bg-no-repeat bg-cover bg-center rounded-lg cursor-pointer">
+
+//             <!-- Hover Info Box -->
+//             <div class="bg-white w-10/12 rounded-md absolute left-1/2 bottom-5 
+//             -translate-x-1/2 py-3 px-5 flex items-center justify-between
+//             duration-500 group-hover:bottom-7 shadow">
+
+//                 <div>
+//                     <h2 class="font-semibold">MERN Stack Project</h2>
+//                     <p class="text-sm text-gray-700">Web Design</p>
+//                 </div>
+
+//                 <div class="border rounded-full border-black w-9 aspect-square flex
+//                 items-center justify-center shadow-[2px_2px_0_#000]
+//                 group-hover:bg-lime-300 transition">
+//                     <img src="./images/send-icon.png" alt="" class="w-5">
+//                 </div>
+//             </div>
+//         </div>
+//                 <div class="relative group aspect-square bg-[url('./images/work-2.png')] 
+//         bg-no-repeat bg-cover bg-center rounded-lg cursor-pointer">
+
+//             <!-- Hover Info Box -->
+//             <div class="bg-white w-10/12 rounded-md absolute left-1/2 bottom-5 
+//             -translate-x-1/2 py-3 px-5 flex items-center justify-between
+//             duration-500 group-hover:bottom-7 shadow">
+
+//                 <div>
+//                     <h2 class="font-semibold">MERN Stack Project</h2>
+//                     <p class="text-sm text-gray-700">Web Design</p>
+//                 </div>
+
+//                 <div class="border rounded-full border-black w-9 aspect-square flex
+//                 items-center justify-center shadow-[2px_2px_0_#000]
+//                 group-hover:bg-lime-300 transition">
+//                     <img src="./images/send-icon.png" alt="" class="w-5">
+//                 </div>
+//             </div>
+//         </div>
+//                 <div class="relative group aspect-square bg-[url('./images/work-3.png')] 
+//         bg-no-repeat bg-cover bg-center rounded-lg cursor-pointer">
+
+//             <!-- Hover Info Box -->
+//             <div class="bg-white w-10/12 rounded-md absolute left-1/2 bottom-5 
+//             -translate-x-1/2 py-3 px-5 flex items-center justify-between
+//             duration-500 group-hover:bottom-7 shadow">
+
+//                 <div>
+//                     <h2 class="font-semibold">MERN Stack Project</h2>
+//                     <p class="text-sm text-gray-700">Web Design</p>
+//                 </div>
+
+//                 <div class="border rounded-full border-black w-9 aspect-square flex
+//                 items-center justify-center shadow-[2px_2px_0_#000]
+//                 group-hover:bg-lime-300 transition">
+//                     <img src="./images/send-icon.png" alt="" class="w-5">
+//                 </div>
+//             </div>
+//         </div>
+//                 <div class="relative group aspect-square bg-[url('./images/work-4.png')] 
+//         bg-no-repeat bg-cover bg-center rounded-lg cursor-pointer">
+
+//             <!-- Hover Info Box -->
+//             <div class="bg-white w-10/12 rounded-md absolute left-1/2 bottom-5 
+//             -translate-x-1/2 py-3 px-5 flex items-center justify-between
+//             duration-500 group-hover:bottom-7 shadow">
+
+//                 <div>
+//                     <h2 class="font-semibold">MERN Stack Project</h2>
+//                     <p class="text-sm text-gray-700">Web Design</p>
+//                 </div>
+
+//                 <div class="border rounded-full border-black w-9 aspect-square flex
+//                 items-center justify-center shadow-[2px_2px_0_#000]
+//                 group-hover:bg-lime-300 transition">
+//                     <img src="./images/send-icon.png" alt="" class="w-5">
+//                 </div>
+//             </div>
+//         </div>
+//     </div>
+//     <a href="#" class="w-max flex items-center justify-center gap-2 text-gray-700
+//     border-[0.5px] border-gray-700 rounded-full py-3 px-10 mx-auto mb-20
+//     hover:bg:[#fcf4f4] duration-500">Show more
+// <img src="./images/right-arrow-bold.png" alt=""></a>
+
+//     </div>
+//     <!-- ----concat----- -->
+//      <div id="concat" class="w-full px-[12%] py-10 scroll-mt-20 bg-[url('./images/
+//      footer-bg-color.png')] bg-no-repeat bg-[length:90%_auto] bg-center">
+//         <h4 class="text-center mb-2 text-lg font-ovo">Connect with me</h4>
+//         <h2 class="text-center text-5xl font-bold font-ovo">Get in touch</h2>
+//         <p class="text-center max-w-2x1 mx-auto mt-5 mb-12">I'd love to hear from you!
+//             if you have any questions, comments or feedback, please use the from below</p>
+//             <form action="" class="max-w-2x1 mx-auto">
+//                 <div class="grid grid-cols-2 gap-6 mt-10 mb-8">
+//                     <input type="text" placeholder="Enter your name" class="flex-1 p-3
+//                      outline-none border-[0.5px] border-gray-400 rounded-md bg-white">
+//                       <input type="email" placeholder="Enter your email" class="flex-1 p-3
+//                      outline-none border-[0.5px] border-gray-400 rounded-md bg-white">
+//                 </div>
+//                 <textarea rows="6" placeholder="Enter your message" class="w-full"></textarea>
+//             </form>
+//      </div>
+//     <!-- JS -->
+//     <script>
+//         function openMenu() {
+//             document.getElementById("sideMenu").classList.remove("translate-x-full");
+//         }
+//         function closeMenu() {
+//             document.getElementById("sideMenu").classList.add("translate-x-full");
+//         }
+//     </script>
+
+// </body>
+
+// </html>
+
+
+
+
+
+
+
+
+
